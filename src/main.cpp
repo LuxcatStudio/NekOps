@@ -1,6 +1,7 @@
 #include <boost/process.hpp>
 #include <boost/asio.hpp>
 #include <boost/beast.hpp>
+#include <openssl/sha.h>
 #include <unordered_map>
 #include <iostream>
 #include <thread>
@@ -104,4 +105,17 @@ void http_server_task() {
     } catch (const std::exception& e) {
         std::cerr << "Server error: " << e.what() << std::endl;
     }
+}
+
+std::string sha256(const std::string& str) {
+    unsigned char hash[SHA256_DIGEST_LENGTH];
+    SHA256((unsigned char*)str.c_str(), str.length(), hash);
+    
+    std::string result;
+    for (int i = 0; i < SHA256_DIGEST_LENGTH; i++) {
+        char buf[3];
+        sprintf(buf, "%02x", hash[i]);
+        result += buf;
+    }
+    return result;
 }
