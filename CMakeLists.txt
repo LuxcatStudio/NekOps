@@ -8,7 +8,5 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 add_executable(${PROJECT_NAME} src/Program.cpp)
 
 if (WIN32)
-    add_definitions(-DWIN32)
-elseif(UNIX)
-    add_definitions(-DUNIX)
+    add_definitions(-D_WIN32)
 endif()

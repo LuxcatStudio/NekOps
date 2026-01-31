@@ -1,6 +1,12 @@
-#if defined(WIN32)
+#if defined(_WIN32)
 #include <windows.h>
-#elif defined(UNIX)
+#else
 #include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 #endif
 #include <iostream>
+
+int main(int argc, char *argv[]) {
+    return 0;
+}
