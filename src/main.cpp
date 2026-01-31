@@ -22,18 +22,5 @@ int main(int argc, char *argv[]) {
         daemon_task();
         return 0;
     }
-    try {
-        bp::child daemon_process(
-            bp::exe = argv[0], 
-            bp::args = {"--daemon"},  
-            bp::std_out > bp::null,  
-            bp::std_err > bp::null,  
-            bp::std_in < bp::null,   
-            bp::detached             
-        );
-    }
-    catch(const std::exception& e) { 
-        return 1;
-    }
     return 0;
 }
