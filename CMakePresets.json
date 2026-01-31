@@ -2,28 +2,18 @@
     "version": 10,
     "cmakeMinimumRequired": {
         "major": 3,
-        "minor": 23,
+        "minor": 30,
         "patch": 0
     },
     "configurePresets": [
         {
-            "name": "Windows",
-            "displayName": "Windows Configure",
-            "description": "Windows Configure",
-            "generator": "MinGW Makefiles",
+            "name": "default",
+            "displayName": "Default Configure",
+            "description": "Default Configure",
+            "generator": "Ninja",
             "binaryDir": "${sourceDir}/build",
             "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Debug",
-                "CMAKE_INSTALL_PREFIX": "${sourceDir}/install"
-            }
-        },
-        {
-            "name": "Unix",
-            "displayName": "Unix Configure",
-            "description": "Unix and Unix-like Configure",
-            "generator": "Unix Makefiles",
-            "binaryDir": "${sourceDir}/build",
-            "cacheVariables": {
+                "CMAKE_CXX_COMPILER": "g++",
                 "CMAKE_BUILD_TYPE": "Debug",
                 "CMAKE_INSTALL_PREFIX": "${sourceDir}/install"
             }
