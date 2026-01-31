@@ -10,7 +10,7 @@ set(Boost_USE_STATIC_LIBS ON)
 set(Boost_USE_MULTITHREADED ON)
 set(Boost_USE_STATIC_RUNTIME OFF)
 
-add_executable(${PROJECT_NAME} src/Program.cpp)
+add_executable(${PROJECT_NAME} src/main.cpp)
 
 find_package(Boost REQUIRED COMPONENTS system process)
 target_link_libraries(${PROJECT_NAME} PRIVATE Boost::system Boost::process)
