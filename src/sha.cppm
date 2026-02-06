@@ -16,6 +16,7 @@ namespace SHA {
             sprintf(buf, "%02x", hash[i]);
             result += buf;
         }
+        std::cout << "SHA-256 hash computed: " << result << std::endl;
         return result;
     }
 }

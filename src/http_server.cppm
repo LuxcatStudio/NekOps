@@ -7,6 +7,9 @@ module;
 
 module http_server;
 
+import sha;
+
+
 namespace HttpServer {
     void http_server_task() {
         try {
@@ -61,27 +64,26 @@ namespace HttpServer {
         }
     }
     bool token_validator(const boost::beast::http::request<boost::beast::http::string_body>& req) {
-        static const std::unordered_map<std::string, std::string> valid_tokens = {
-            {"admin_token", "admin"},
-            {"user_token", "user"}
-        };
+    static const std::unordered_map<std::string, std::string> valid_tokens = {
+        {SHA::sha256("admin" + "20231201"), "admin"},
+        {SHA::sha256("user" + "20231201"), "user"}
+    };
 
-        auto auth_header = req.find(boost::beast::http::field::authorization);
-        if (auth_header != req.end()) {
-            std::string auth(auth_header->value());
-            if (auth.find("Bearer ") == 0) {
-                std::string token = auth.substr(7);
-                return valid_tokens.find(token) != valid_tokens.end();
-            }
-        }
-            
-        std::string target(req.target());
-        size_t pos = target.find("?token=");
-        if (pos != std::string::npos) {
-            std::string token = target.substr(pos + 7);
+    auto auth_header = req.find(boost::beast::http::field::authorization);
+    if (auth_header != req.end()) {
+        std::string auth(auth_header->value());
+        if (auth.find("Bearer ") == 0) {
+            std::string token = auth.substr(7);
             return valid_tokens.find(token) != valid_tokens.end();
         }
-            
-        return false;
+    }
+        
+    std::string target(req.target());
+    size_t pos = target.find("?token=");
+    if (pos != std::string::npos) {
+        std::string token = target.substr(pos + 7);
+        return valid_tokens.find(token) != valid_tokens.end();
+    }
+    return false;
     }
 }
