@@ -9,7 +9,6 @@ module http_server;
 
 import sha;
 
-
 namespace HttpServer {
     void http_server_task() {
         try {
