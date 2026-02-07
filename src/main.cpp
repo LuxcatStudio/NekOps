@@ -4,6 +4,5 @@ import sha;
 
 int main(int argc, char *argv[]) {
     std::cout << "open_http_server\n";
-
     return 0;
 }
