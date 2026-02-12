@@ -12,13 +12,14 @@ set(Boost_USE_MULTITHREADED ON)
 set(Boost_USE_STATIC_RUNTIME OFF)
 
 file(GLOB SOURCE_FILE src/*.cpp)
-file(GLOB MODULE_FILE src/modules/*.cppm)
+file(GLOB MODULE_FILE1 src/*.cppm)
+file(GLOB MODULE_FILE2 src/modules/*.cppm)
 
 add_executable(${PROJECT_NAME} ${SOURCE_FILE})
 
 target_sources(${PROJECT_NAME} PUBLIC
     FILE_SET my_modules TYPE CXX_MODULES
-    FILES ${MODULE_FILE}
+    FILES ${MODULE_FILE2} ${MOHULE_FILE2}
 )
 
 find_package(Boost REQUIRED COMPONENTS system asio)
